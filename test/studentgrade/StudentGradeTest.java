@@ -1,35 +1,69 @@
 package studentgrade;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-/* JUnit 3.8.1 */
-public class StudentGradeTest extends TestCase {
+/**
+ *
+ * @author Riy Alshrari
+ */
+public class StudentGradeTest {
     
-    public StudentGradeTest(String testName) {
-        super(testName);
+    private static int testCaseCount;
+    private int mark;
+    private String expectedResult;
+    
+    public StudentGradeTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+        System.out.println("Welcome to StudentGaradeTest Class. \n");
+        testCaseCount = 1;
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+        System.out.println("Good Bye! ");
+        testCaseCount = 0;
+    }
+    
+    @Before
+    public void setUp() {
+        System.out.print("Test Case #" + testCaseCount + "\n");
+    }
+    
+    @After
+    public void tearDown() {
+        System.out.println("(Expected Result: " + expectedResult + ") (Actual Result: " + StudentGrade.getGrade(mark) +") \n");
+        testCaseCount++;
     }
 
+    /**
+     * Test of getGrade methods, of class StudentGrade.
+     */
+    @Test
     public void testGetGrade95() {
-        System.out.println("getGrade 95");
-        int mark = 95;
-        String expResult = "A";
-        String result = StudentGrade.getGrade(mark);
-        assertEquals(expResult, result);
-    }
-
-    public void testGetGrade85() {
-        System.out.println("getGrade 85");
-        int mark = 85;
-        String expResult = "B";
-        String result = StudentGrade.getGrade(mark);
-        assertEquals(expResult, result);
+       mark = 95;
+       expectedResult = "A";
+       assertEquals(expectedResult, StudentGrade.getGrade(mark));
     }
     
+    @Test
+    public void testGetGrade85() {
+       mark = 85;
+       expectedResult = "B";
+       assertEquals(expectedResult, StudentGrade.getGrade(mark));
+    }
+    
+    @Test
     public void testGetGrade75() {
-        System.out.println("getGrade 85");
-        int mark = 75;
-        String expResult = "F";
-        String result = StudentGrade.getGrade(mark);
-        assertEquals(expResult, result);
+       mark = 75;
+       expectedResult = "F";
+       assertEquals(expectedResult, StudentGrade.getGrade(mark));
     }
 }
